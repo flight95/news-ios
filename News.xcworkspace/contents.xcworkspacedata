@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <Group
+      location = "group:LibraryData"
+      name = "LibraryData">
+      <Group
+         location = "group:Cache"
+         name = "Cache">
+      </Group>
+      <Group
+         location = "group:Remote"
+         name = "Remote">
+      </Group>
+   </Group>
+   <Group
+      location = "group:LibraryDomain"
+      name = "LibraryDomain">
+   </Group>
+   <Group
+      location = "group:NewsPresenter"
+      name = "NewsPresenter">
+      <FileRef
+         location = "group:HomePresenter">
+      </FileRef>
+   </Group>
+   <Group
+      location = "group:NewsView"
+      name = "NewsView">
+      <FileRef
+         location = "group:HomeView">
+      </FileRef>
+   </Group>
+   <FileRef
+      location = "group:NewsApplication/NewsApplication.xcodeproj">
+   </FileRef>
+</Workspace>
