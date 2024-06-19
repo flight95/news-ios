@@ -11,11 +11,20 @@
       <Group
          location = "group:Remote"
          name = "Remote">
+         <FileRef
+            location = "group:DataRemoteNews">
+         </FileRef>
       </Group>
+      <FileRef
+         location = "group:/Users/richard/Android/iOS/News/LibraryData/DataNews">
+      </FileRef>
    </Group>
    <Group
       location = "group:LibraryDomain"
       name = "LibraryDomain">
+      <FileRef
+         location = "group:DomainNews">
+      </FileRef>
    </Group>
    <Group
       location = "group:NewsPresenter"

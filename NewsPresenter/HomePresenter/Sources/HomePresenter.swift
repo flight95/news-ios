@@ -9,7 +9,7 @@ import Combine
 
 public protocol HomePresenter: ObservableObject {
     
-    var count: Int { get }
+    var news: String { get }
     
-    func addCount()
+    func fetchNews()
 }

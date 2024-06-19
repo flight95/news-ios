@@ -12,11 +12,21 @@ let package = Package(
             name: "NewsPresenter-Home",
             targets: ["NewsPresenter-Home"]),
     ],
+    dependencies: [
+        .package(name: "LibraryDomain-News", path: "../LibraryDomain/DomainNews"),
+        .package(name: "LibraryData-News", path: "../LibraryData/DataNews"),
+        .package(name: "LibraryData-Remote-News", path: "../LibraryData/Remote/DataRemoteNews"),
+    ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "NewsPresenter-Home"),
-        
+            name: "NewsPresenter-Home",
+            dependencies: [
+                .product(name: "LibraryDomain-News", package: "LibraryDomain-News"),
+                .product(name: "LibraryData-News", package: "LibraryData-News"),
+                .product(name: "LibraryData-Remote-News", package: "LibraryData-Remote-News"),
+            ]
+        ),
     ]
 )

@@ -24,9 +24,9 @@ public struct HomeView<Presenter: HomePresenter>: View {
                 .imageScale(.large)
                 .foregroundStyle(.tint)
             Button(
-                action: { presenter.addCount() }
+                action: { presenter.fetchNews() }
             ) {
-                Text("Count: \(presenter.count)")
+                Text("CLICK: \(presenter.news)")
             }
         }
         .padding()

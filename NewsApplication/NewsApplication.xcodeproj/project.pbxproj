@@ -10,6 +10,8 @@
 		795355C22C21C2D5005F0679 /* NewsApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795355C12C21C2D5005F0679 /* NewsApplication.swift */; };
 		795355C62C21C2D6005F0679 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 795355C52C21C2D6005F0679 /* Assets.xcassets */; };
 		795355C92C21C2D6005F0679 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 795355C82C21C2D6005F0679 /* Preview Assets.xcassets */; };
+		795978102C2299E70025E573 /* LibraryData-News in Frameworks */ = {isa = PBXBuildFile; productRef = 7959780F2C2299E70025E573 /* LibraryData-News */; };
+		795978132C22A3CB0025E573 /* LibraryData-Remote-News in Frameworks */ = {isa = PBXBuildFile; productRef = 795978122C22A3CB0025E573 /* LibraryData-Remote-News */; };
 		79B340D82C21E39200A599C9 /* NewsView-Home in Frameworks */ = {isa = PBXBuildFile; productRef = 79B340D72C21E39200A599C9 /* NewsView-Home */; };
 		79B340DB2C21E49500A599C9 /* NewsPresenter-Home in Frameworks */ = {isa = PBXBuildFile; productRef = 79B340DA2C21E49500A599C9 /* NewsPresenter-Home */; };
 /* End PBXBuildFile section */
@@ -27,7 +29,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				79B340D82C21E39200A599C9 /* NewsView-Home in Frameworks */,
+				795978132C22A3CB0025E573 /* LibraryData-Remote-News in Frameworks */,
 				79B340DB2C21E49500A599C9 /* NewsPresenter-Home in Frameworks */,
+				795978102C2299E70025E573 /* LibraryData-News in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +91,8 @@
 			packageProductDependencies = (
 				79B340D72C21E39200A599C9 /* NewsView-Home */,
 				79B340DA2C21E49500A599C9 /* NewsPresenter-Home */,
+				7959780F2C2299E70025E573 /* LibraryData-News */,
+				795978122C22A3CB0025E573 /* LibraryData-Remote-News */,
 			);
 			productName = NewsApplication;
 			productReference = 795355BE2C21C2D5005F0679 /* NewsApplication.app */;
@@ -120,6 +126,8 @@
 				795355DA2C21D486005F0679 /* XCRemoteSwiftPackageReference "SwiftLint" */,
 				79B340D62C21E39200A599C9 /* XCLocalSwiftPackageReference "../NewsView/HomeView" */,
 				79B340D92C21E49500A599C9 /* XCLocalSwiftPackageReference "../NewsPresenter/HomePresenter" */,
+				7959780E2C2299E70025E573 /* XCLocalSwiftPackageReference "../LibraryData/DataNews" */,
+				795978112C22A3CB0025E573 /* XCLocalSwiftPackageReference "../LibraryData/Remote/DataRemoteNews" */,
 			);
 			productRefGroup = 795355BF2C21C2D5005F0679 /* Products */;
 			projectDirPath = "";
@@ -367,6 +375,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
+		7959780E2C2299E70025E573 /* XCLocalSwiftPackageReference "../LibraryData/DataNews" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../LibraryData/DataNews;
+		};
+		795978112C22A3CB0025E573 /* XCLocalSwiftPackageReference "../LibraryData/Remote/DataRemoteNews" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../LibraryData/Remote/DataRemoteNews;
+		};
 		79B340D62C21E39200A599C9 /* XCLocalSwiftPackageReference "../NewsView/HomeView" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../NewsView/HomeView;
@@ -389,6 +405,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		7959780F2C2299E70025E573 /* LibraryData-News */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "LibraryData-News";
+		};
+		795978122C22A3CB0025E573 /* LibraryData-Remote-News */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "LibraryData-Remote-News";
+		};
 		79B340D72C21E39200A599C9 /* NewsView-Home */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = "NewsView-Home";
