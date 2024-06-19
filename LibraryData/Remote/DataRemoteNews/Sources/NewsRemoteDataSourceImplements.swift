@@ -8,32 +8,68 @@
 import Foundation
 import Combine
 import LibraryData_News
+import LibraryData_Remote_Core
 
 public class NewsRemoteDataSourceImplements : NewsRemoteDataSource {
     
-    // ****************************************************************************************************
-    // MARK: Instance functions.
+    // MARK: - Instance functions.
     
-    public static func getInstance() -> NewsRemoteDataSourceImplements {
-        return NewsRemoteDataSourceImplements()
+    public static func getInstance(
+        authentication: String,
+        api: NewsRemoteApi
+    ) -> NewsRemoteDataSourceImplements {
+        return NewsRemoteDataSourceImplements(
+            authentication: authentication,
+            api: api
+        )
     }
     
-    private init() { }
+    private init(
+        authentication: String,
+        api: NewsRemoteApi
+    ) {
+        _authentication = authentication
+        _api = api
+    }
     
-    // ****************************************************************************************************
-    // MARK: Implements GetNews.
+    deinit {
+        _cancellables.forEach { cancellable in cancellable.cancel() }
+    }
+    
+    // MARK: - Constants and Variables.
+    
+    private var _cancellables = Set<AnyCancellable>()
+    
+    private let _authentication: String
+    
+    private let _api: NewsRemoteApi
+    
+    // MARK: - Implements GetNews.
     
     public func get() -> AnyPublisher<String, Error> {
         return Future<String, Error> { promise in
-            DispatchQueue.global(qos: .default).async {
-                do {
-                    print("NewsRemoteDataSourceImplements.success in \(Thread.current)")
-                    promise(.success("NewsRemoteDataSourceImplements"))
-                } catch {
-                    print("NewsRemoteDataSourceImplements.failure in \(Thread.current)")
-                    promise(.failure(error))
-                }
-            }
+            self._api.get(
+                authorization: self._authentication,
+                page: 1,
+                size: 16
+            ).subscribe(on: DispatchQueue.global(qos: .background))
+                .receive(on: DispatchQueue.global(qos: .background))
+                .sink(
+                    receiveCompletion: { completion in
+                        switch completion {
+                            case .finished: break
+                            case .failure(let error):
+                                print("NewsRemoteDataSourceImplements.failure in \(Thread.current): \(error)")
+                                promise(.failure(error))
+                        }
+                    },
+                    receiveValue: { value in
+                        print("NewsRemoteDataSourceImplements.success in \(Thread.current)")
+                        print("value: \(value)")
+                        promise(.success("NewsRemoteDataSourceImplements"))
+                    }
+                )
+                .store(in: &self._cancellables)
         }.eraseToAnyPublisher()
     }
 }

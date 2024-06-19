@@ -11,8 +11,7 @@ import LibraryDomain_News
 
 public class HomePresenterImplements : HomePresenter {
     
-    // ****************************************************************************************************
-    // MARK: Instance functions.
+    // MARK: - Instance functions.
     
     public static func getInstance(
         getNews: GetNews
@@ -25,28 +24,26 @@ public class HomePresenterImplements : HomePresenter {
     private init(
         getNews: GetNews
     ) {
-        self.getNews = getNews
+        _getNews = getNews
     }
     
     deinit {
-        cancellables.forEach { cancellable in cancellable.cancel() }
+        _cancellables.forEach { cancellable in cancellable.cancel() }
     }
     
-    // ****************************************************************************************************
-    // MARK: Constants and Variables.
+    // MARK: - Constants and Variables.
     
-    private var cancellables = Set<AnyCancellable>()
+    private var _cancellables = Set<AnyCancellable>()
     
-    private let getNews: GetNews
+    private let _getNews: GetNews
     
-    // ****************************************************************************************************
-    // MARK: Implements HomePresenter.
+    // MARK: - Implements HomePresenter.
     
     @Published public var news: String = ""
     
     public func fetchNews() {
-        getNews()
-            .subscribe(on: DispatchQueue.main)
+        _getNews()
+            .receive(on: DispatchQueue.main)
             .sink(
                 receiveCompletion: { completion in
                     switch completion {
@@ -60,6 +57,6 @@ public class HomePresenterImplements : HomePresenter {
                     self?.news = value
                 }
             )
-            .store(in: &cancellables)
+            .store(in: &_cancellables)
     }
 }

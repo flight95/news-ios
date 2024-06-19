@@ -7,16 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		790F05AE2C230F9400006A79 /* LibraryDomain-Model-Core in Frameworks */ = {isa = PBXBuildFile; productRef = 790F05AD2C230F9400006A79 /* LibraryDomain-Model-Core */; };
+		790F05B32C234A8D00006A79 /* local.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 790F05B22C234A8D00006A79 /* local.xcconfig */; };
 		795355C22C21C2D5005F0679 /* NewsApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795355C12C21C2D5005F0679 /* NewsApplication.swift */; };
 		795355C62C21C2D6005F0679 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 795355C52C21C2D6005F0679 /* Assets.xcassets */; };
 		795355C92C21C2D6005F0679 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 795355C82C21C2D6005F0679 /* Preview Assets.xcassets */; };
 		795978102C2299E70025E573 /* LibraryData-News in Frameworks */ = {isa = PBXBuildFile; productRef = 7959780F2C2299E70025E573 /* LibraryData-News */; };
 		795978132C22A3CB0025E573 /* LibraryData-Remote-News in Frameworks */ = {isa = PBXBuildFile; productRef = 795978122C22A3CB0025E573 /* LibraryData-Remote-News */; };
+		795978162C22AD5E0025E573 /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 795978152C22AD5E0025E573 /* AlamofireDynamic */; };
+		795978192C22ADE40025E573 /* LibraryData-Remote-Core in Frameworks */ = {isa = PBXBuildFile; productRef = 795978182C22ADE40025E573 /* LibraryData-Remote-Core */; };
 		79B340D82C21E39200A599C9 /* NewsView-Home in Frameworks */ = {isa = PBXBuildFile; productRef = 79B340D72C21E39200A599C9 /* NewsView-Home */; };
 		79B340DB2C21E49500A599C9 /* NewsPresenter-Home in Frameworks */ = {isa = PBXBuildFile; productRef = 79B340DA2C21E49500A599C9 /* NewsPresenter-Home */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		790F05B02C2322C600006A79 /* OSLog.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OSLog.framework; path = System/Library/Frameworks/OSLog.framework; sourceTree = SDKROOT; };
+		790F05B22C234A8D00006A79 /* local.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = local.xcconfig; sourceTree = "<group>"; };
+		790F05B42C234EF300006A79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		795355BE2C21C2D5005F0679 /* NewsApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		795355C12C21C2D5005F0679 /* NewsApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsApplication.swift; sourceTree = "<group>"; };
 		795355C52C21C2D6005F0679 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -30,19 +37,31 @@
 			files = (
 				79B340D82C21E39200A599C9 /* NewsView-Home in Frameworks */,
 				795978132C22A3CB0025E573 /* LibraryData-Remote-News in Frameworks */,
+				795978162C22AD5E0025E573 /* AlamofireDynamic in Frameworks */,
+				795978192C22ADE40025E573 /* LibraryData-Remote-Core in Frameworks */,
 				79B340DB2C21E49500A599C9 /* NewsPresenter-Home in Frameworks */,
 				795978102C2299E70025E573 /* LibraryData-News in Frameworks */,
+				790F05AE2C230F9400006A79 /* LibraryDomain-Model-Core in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		790F05AF2C2322C600006A79 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				790F05B02C2322C600006A79 /* OSLog.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		795355B52C21C2D5005F0679 = {
 			isa = PBXGroup;
 			children = (
 				795355C02C21C2D5005F0679 /* NewsApplication */,
 				795355BF2C21C2D5005F0679 /* Products */,
+				790F05AF2C2322C600006A79 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,9 +76,11 @@
 		795355C02C21C2D5005F0679 /* NewsApplication */ = {
 			isa = PBXGroup;
 			children = (
+				790F05B42C234EF300006A79 /* Info.plist */,
 				795355C12C21C2D5005F0679 /* NewsApplication.swift */,
 				795355C52C21C2D6005F0679 /* Assets.xcassets */,
 				795355C72C21C2D6005F0679 /* Preview Content */,
+				790F05B22C234A8D00006A79 /* local.xcconfig */,
 			);
 			path = NewsApplication;
 			sourceTree = "<group>";
@@ -93,6 +114,9 @@
 				79B340DA2C21E49500A599C9 /* NewsPresenter-Home */,
 				7959780F2C2299E70025E573 /* LibraryData-News */,
 				795978122C22A3CB0025E573 /* LibraryData-Remote-News */,
+				795978152C22AD5E0025E573 /* AlamofireDynamic */,
+				795978182C22ADE40025E573 /* LibraryData-Remote-Core */,
+				790F05AD2C230F9400006A79 /* LibraryDomain-Model-Core */,
 			);
 			productName = NewsApplication;
 			productReference = 795355BE2C21C2D5005F0679 /* NewsApplication.app */;
@@ -128,6 +152,9 @@
 				79B340D92C21E49500A599C9 /* XCLocalSwiftPackageReference "../NewsPresenter/HomePresenter" */,
 				7959780E2C2299E70025E573 /* XCLocalSwiftPackageReference "../LibraryData/DataNews" */,
 				795978112C22A3CB0025E573 /* XCLocalSwiftPackageReference "../LibraryData/Remote/DataRemoteNews" */,
+				795978142C22AD5E0025E573 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				795978172C22ADE40025E573 /* XCLocalSwiftPackageReference "../LibraryData/Remote/DataRemoteCore" */,
+				790F05AC2C230F9400006A79 /* XCLocalSwiftPackageReference "../LibraryDomain/Model/DomainModelCore" */,
 			);
 			productRefGroup = 795355BF2C21C2D5005F0679 /* Products */;
 			projectDirPath = "";
@@ -143,6 +170,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				790F05B32C234A8D00006A79 /* local.xcconfig in Resources */,
 				795355C92C21C2D6005F0679 /* Preview Assets.xcassets in Resources */,
 				795355C62C21C2D6005F0679 /* Assets.xcassets in Resources */,
 			);
@@ -283,6 +311,7 @@
 		};
 		795355CD2C21C2D6005F0679 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 790F05B22C234A8D00006A79 /* local.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -291,6 +320,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"NewsApplication/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NewsApplication/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = News;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.news";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -318,6 +348,7 @@
 		};
 		795355CE2C21C2D6005F0679 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 790F05B22C234A8D00006A79 /* local.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -326,6 +357,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"NewsApplication/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NewsApplication/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = News;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.news";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -375,6 +407,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
+		790F05AC2C230F9400006A79 /* XCLocalSwiftPackageReference "../LibraryDomain/Model/DomainModelCore" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../LibraryDomain/Model/DomainModelCore;
+		};
 		7959780E2C2299E70025E573 /* XCLocalSwiftPackageReference "../LibraryData/DataNews" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../LibraryData/DataNews;
@@ -382,6 +418,10 @@
 		795978112C22A3CB0025E573 /* XCLocalSwiftPackageReference "../LibraryData/Remote/DataRemoteNews" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../LibraryData/Remote/DataRemoteNews;
+		};
+		795978172C22ADE40025E573 /* XCLocalSwiftPackageReference "../LibraryData/Remote/DataRemoteCore" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../LibraryData/Remote/DataRemoteCore;
 		};
 		79B340D62C21E39200A599C9 /* XCLocalSwiftPackageReference "../NewsView/HomeView" */ = {
 			isa = XCLocalSwiftPackageReference;
@@ -398,13 +438,25 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/SwiftLint.git";
 			requirement = {
-				kind = exactVersion;
-				version = 0.55.1;
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.55.1;
+			};
+		};
+		795978142C22AD5E0025E573 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		790F05AD2C230F9400006A79 /* LibraryDomain-Model-Core */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "LibraryDomain-Model-Core";
+		};
 		7959780F2C2299E70025E573 /* LibraryData-News */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = "LibraryData-News";
@@ -412,6 +464,15 @@
 		795978122C22A3CB0025E573 /* LibraryData-Remote-News */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = "LibraryData-Remote-News";
+		};
+		795978152C22AD5E0025E573 /* AlamofireDynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 795978142C22AD5E0025E573 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = AlamofireDynamic;
+		};
+		795978182C22ADE40025E573 /* LibraryData-Remote-Core */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "LibraryData-Remote-Core";
 		};
 		79B340D72C21E39200A599C9 /* NewsView-Home */ = {
 			isa = XCSwiftPackageProductDependency;

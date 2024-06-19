@@ -12,6 +12,9 @@
          location = "group:Remote"
          name = "Remote">
          <FileRef
+            location = "group:DataRemoteCore">
+         </FileRef>
+         <FileRef
             location = "group:DataRemoteNews">
          </FileRef>
       </Group>
@@ -22,6 +25,13 @@
    <Group
       location = "group:LibraryDomain"
       name = "LibraryDomain">
+      <Group
+         location = "group:Model"
+         name = "Model">
+         <FileRef
+            location = "group:DomainModelCore">
+         </FileRef>
+      </Group>
       <FileRef
          location = "group:DomainNews">
       </FileRef>

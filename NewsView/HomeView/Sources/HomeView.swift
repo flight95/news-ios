@@ -10,13 +10,19 @@ import NewsPresenter_Home
 
 public struct HomeView<Presenter: HomePresenter>: View {
     
+    // MARK: - Instance functions.
+    
     public init(
         presenter: Presenter
     ) {
-        self.presenter = presenter
+        _presenter = presenter
     }
     
-    @ObservedObject var presenter: Presenter
+    // MARK: - Constants and Variables.
+    
+    @ObservedObject private var _presenter: Presenter
+    
+    // MARK: - Views.
     
     public var body: some View {
         VStack {
@@ -24,14 +30,16 @@ public struct HomeView<Presenter: HomePresenter>: View {
                 .imageScale(.large)
                 .foregroundStyle(.tint)
             Button(
-                action: { presenter.fetchNews() }
+                action: { _presenter.fetchNews() }
             ) {
-                Text("CLICK: \(presenter.news)")
+                Text("CLICK: \(_presenter.news)")
             }
         }
         .padding()
     }
 }
+
+// MARK: - Preview.
 
 #Preview {
     HomeView(

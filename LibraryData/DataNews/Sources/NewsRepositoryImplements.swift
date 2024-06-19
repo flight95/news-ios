@@ -11,8 +11,7 @@ import LibraryDomain_News
 
 public class NewsRepositoryImplements : NewsRepository {
     
-    // ****************************************************************************************************
-    // MARK: Instance functions.
+    // MARK: - Instance functions.
     
     public static func getInstance(
         remote: NewsRemoteDataSource
@@ -25,42 +24,22 @@ public class NewsRepositoryImplements : NewsRepository {
     private init(
         remote: NewsRemoteDataSource
     ) {
-        self.remote = remote
+        _remote = remote
     }
     
-    deinit {
-        cancellables.forEach { cancellable in cancellable.cancel() }
-    }
+    // MARK: - Constants and Variables.
     
-    // ****************************************************************************************************
-    // MARK: Constants and Variables.
+    private let _remote: NewsRemoteDataSource
     
-    private var cancellables = Set<AnyCancellable>()
-    
-    private let remote: NewsRemoteDataSource
-    
-    // ****************************************************************************************************
-    // MARK: Implements GetNews.
+    // MARK: - Implements GetNews.
     
     public func get() -> AnyPublisher<String, Error> {
-        return Future<String, Error> { promise in
-            self.remote.get()
-                .subscribe(on: DispatchQueue.global(qos: .default))
-                .sink(
-                    receiveCompletion: { completion in
-                        switch completion {
-                            case .finished: break
-                            case .failure(let error):
-                                print("NewsRepositoryImplements.failure in \(Thread.current)")
-                                promise(.failure(error))
-                        }
-                    },
-                    receiveValue: { value in
-                        print("NewsRepositoryImplements.success in \(Thread.current)")
-                        promise(.success(value))
-                    }
-                )
-                .store(in: &self.cancellables)
-        }.eraseToAnyPublisher()
+        return self._remote.get()
+            .receive(on: DispatchQueue.global(qos: .default))
+            .map { result in
+                print("NewsRepositoryImplements.map in \(Thread.current)")
+                return result
+            }
+            .eraseToAnyPublisher()
     }
 }

@@ -10,8 +10,7 @@ import Combine
 
 public class GetNewsImplements : GetNews {
     
-    // ****************************************************************************************************
-    // MARK: Instance functions.
+    // MARK: - Instance functions.
     
     public static func getInstance(
         repository: NewsRepository
@@ -24,42 +23,22 @@ public class GetNewsImplements : GetNews {
     private init(
         repository: NewsRepository
     ) {
-        self.repository = repository
+        _repository = repository
     }
     
-    deinit {
-        cancellables.forEach { cancellable in cancellable.cancel() }
-    }
+    // MARK: - Constants and Variables.
     
-    // ****************************************************************************************************
-    // MARK: Constants and Variables.
+    private let _repository: NewsRepository
     
-    private var cancellables = Set<AnyCancellable>()
-    
-    private let repository: NewsRepository
-    
-    // ****************************************************************************************************
-    // MARK: Implements GetNews.
+    // MARK: - Implements GetNews.
     
     public func callAsFunction() -> AnyPublisher<String, Error> {
-        return Future<String, Error> { promise in
-            self.repository.get()
-                .subscribe(on: DispatchQueue.global(qos: .default))
-                .sink(
-                    receiveCompletion: { completion in
-                        switch completion {
-                            case .finished: break
-                            case .failure(let error):
-                                print("GetNewsImplements.failure in \(Thread.current)")
-                                promise(.failure(error))
-                        }
-                    },
-                    receiveValue: { value in
-                        print("GetNewsImplements.success in \(Thread.current)")
-                        promise(.success(value))
-                    }
-                )
-                .store(in: &self.cancellables)
-        }.eraseToAnyPublisher()
+        return self._repository.get()
+            .receive(on: DispatchQueue.global(qos: .default))
+            .map { result in
+                print("GetNewsImplements.map in \(Thread.current)")
+                return result
+            }
+            .eraseToAnyPublisher()
     }
 }

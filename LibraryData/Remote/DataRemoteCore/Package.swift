@@ -4,27 +4,23 @@
 import PackageDescription
 
 let package = Package(
-    name: "LibraryData-Remote-News",
+    name: "LibraryData-Remote-Core",
     platforms: [.iOS(.v15)],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
-            name: "LibraryData-Remote-News",
-            targets: ["LibraryData-Remote-News"]),
+            name: "LibraryData-Remote-Core",
+            targets: ["LibraryData-Remote-Core"]),
     ],
     dependencies: [
-        .package(name: "LibraryData-News", path: "../LibraryData/DataNews"),
-        .package(name: "LibraryData-Remote-Core", path: "../LibraryData/Remote/DataRemoteCore"),
         .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.9.1")),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "LibraryData-Remote-News",
+            name: "LibraryData-Remote-Core",
             dependencies: [
-                .product(name: "LibraryData-News", package: "LibraryData-News"),
-                .product(name: "LibraryData-Remote-Core", package: "LibraryData-Remote-Core"),
                 .product(name: "AlamofireDynamic", package: "Alamofire")
             ]
         ),
