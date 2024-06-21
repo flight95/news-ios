@@ -8,5 +8,6 @@
 import Foundation
 
 public struct ApiAuthentication {
+    
     public let release: String = Bundle.main.object(forInfoDictionaryKey: "NewsApiKey") as? String ?? ""
 }

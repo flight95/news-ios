@@ -1,5 +1,11 @@
-// swift-tools-version: 5.9
-// The swift-tools-version declares the minimum version of Swift required to build this package.
+// swift-tools-version: 5.10
+
+//
+//  Package.swift
+//  LibraryData-Remote-Core
+//
+//  Created by Richard on 2024.06.20
+//
 
 import PackageDescription
 
@@ -7,21 +13,18 @@ let package = Package(
     name: "LibraryData-Remote-Core",
     platforms: [.iOS(.v15)],
     products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
-        .library(
-            name: "LibraryData-Remote-Core",
-            targets: ["LibraryData-Remote-Core"]),
+        .library(name: "LibraryData-Remote-Core", targets: ["LibraryData-Remote-Core"]),
     ],
     dependencies: [
         .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.9.1")),
+        .package(name: "LibraryDomain-Model-Core", path: "../LibraryDomain/Model/DomainModelCore"),
     ],
     targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "LibraryData-Remote-Core",
             dependencies: [
-                .product(name: "AlamofireDynamic", package: "Alamofire")
+                .product(name: "AlamofireDynamic", package: "Alamofire"),
+                .product(name: "LibraryDomain-Model-Core", package: "LibraryDomain-Model-Core"),
             ]
         ),
     ]

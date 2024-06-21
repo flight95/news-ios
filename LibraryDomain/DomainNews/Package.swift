@@ -1,5 +1,11 @@
-// swift-tools-version: 5.9
-// The swift-tools-version declares the minimum version of Swift required to build this package.
+// swift-tools-version: 5.10
+
+//
+//  Package.swift
+//  LibraryDomain-News
+//
+//  Created by Richard on 2024.06.18
+//
 
 import PackageDescription
 
@@ -7,15 +13,19 @@ let package = Package(
     name: "LibraryDomain-News",
     platforms: [.iOS(.v15)],
     products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
-        .library(
-            name: "LibraryDomain-News",
-            targets: ["LibraryDomain-News"]),
+        .library(name: "LibraryDomain-News", targets: ["LibraryDomain-News"]),
+    ],
+    dependencies: [
+        .package(name: "LibraryDomain-Model-Core", path: "../LibraryDomain/Model/DomainModelCore"),
+        .package(name: "LibraryDomain-Model-News", path: "../LibraryDomain/Model/DomainModelNews"),
     ],
     targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "LibraryDomain-News"),
+            name: "LibraryDomain-News",
+            dependencies: [
+                .product(name: "LibraryDomain-Model-Core", package: "LibraryDomain-Model-Core"),
+                .product(name: "LibraryDomain-Model-News", package: "LibraryDomain-Model-News"),
+            ]
+        ),
     ]
 )

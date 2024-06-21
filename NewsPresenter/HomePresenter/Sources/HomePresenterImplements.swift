@@ -7,6 +7,9 @@
 
 import Foundation
 import Combine
+import PagingLibrary
+import LibraryDomain_Model_Core
+import LibraryDomain_Model_News
 import LibraryDomain_News
 
 public class HomePresenterImplements : HomePresenter {
@@ -27,36 +30,65 @@ public class HomePresenterImplements : HomePresenter {
         _getNews = getNews
     }
     
-    deinit {
+    deinit { // This is canceled along with the lifecycle of the ObservableObject.
         _cancellables.forEach { cancellable in cancellable.cancel() }
+        _cancellables.removeAll()
     }
     
     // MARK: - Constants and Variables.
     
     private var _cancellables = Set<AnyCancellable>()
-    
-    private let _getNews: GetNews
+    private var _getNews: GetNews
+    private var _pager: Pager<NewsModel>? = nil
     
     // MARK: - Implements HomePresenter.
     
-    @Published public var news: String = ""
+    @Published public var pageState = PageState<NewsModel>.getInstance()
     
-    public func fetchNews() {
-        _getNews()
-            .receive(on: DispatchQueue.main)
-            .sink(
-                receiveCompletion: { completion in
-                    switch completion {
-                        case .finished: break
-                        case .failure(let error):
-                            print("HomePresenterImplements.failure in \(Thread.current): \(error)")
-                    }
-                },
-                receiveValue: { [weak self] value in
-                    print("HomePresenterImplements.success in \(Thread.current)")
-                    self?.news = value
+    public func initializePager() {
+        if let pager = _pager {
+            pager.refresh()
+        } else {
+            _pager = Pager<NewsModel>.getInstance(
+                config: PagingConfig.getInstance(initialKey: 1, pageSize: 16),
+                state: pageState
+            ) {
+                PagingSource<NewsModel>.getInstance { params, result in
+                    self._getNews(page: params.key ?? 1, size: params.loadSize)
+                        .receive(on: DispatchQueue.main)
+                        .sink(
+                            receiveCompletion: { completion in
+                                switch completion {
+                                    case .finished: break
+                                    case .failure(let error):
+                                        result(PagingSource.LoadResult.error(cause: PagingError.appendError(cause: error)))
+                                }
+                            },
+                            receiveValue: { value in
+                                let items = value.contents
+                                if (!value.end && !items.isEmpty) {
+                                    result(PagingSource.LoadResult.page(items: value.contents, nextKey: (params.key ?? 0) + 1))
+                                } else {
+                                    result(PagingSource.LoadResult.page(items: value.contents, nextKey: nil))
+                                }
+                            }
+                        )
+                        .store(in: &self._cancellables)
                 }
-            )
-            .store(in: &_cancellables)
+            }
+            _pager?.append()
+        }
+    }
+    
+    public func appendPager() {
+        _pager?.append()
+    }
+    
+    public func retryPager() {
+        _pager?.retry()
+    }
+    
+    public func refreshPager() {
+        _pager?.refresh()
     }
 }

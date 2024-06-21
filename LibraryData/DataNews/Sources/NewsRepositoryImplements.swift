@@ -7,6 +7,8 @@
 
 import Foundation
 import Combine
+import LibraryDomain_Model_Core
+import LibraryDomain_Model_News
 import LibraryDomain_News
 
 public class NewsRepositoryImplements : NewsRepository {
@@ -33,13 +35,12 @@ public class NewsRepositoryImplements : NewsRepository {
     
     // MARK: - Implements GetNews.
     
-    public func get() -> AnyPublisher<String, Error> {
-        return self._remote.get()
+    public func get(
+        page: Int,
+        size: Int
+    ) -> AnyPublisher<PagingModel<NewsModel>, Error> {
+        return self._remote.get(page: page, size: size)
             .receive(on: DispatchQueue.global(qos: .default))
-            .map { result in
-                print("NewsRepositoryImplements.map in \(Thread.current)")
-                return result
-            }
             .eraseToAnyPublisher()
     }
 }

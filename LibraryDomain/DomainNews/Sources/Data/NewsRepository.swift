@@ -6,8 +6,13 @@
 //
 
 import Combine
+import LibraryDomain_Model_Core
+import LibraryDomain_Model_News
 
 public protocol NewsRepository {
     
-    func get() -> AnyPublisher<String, Error>
+    func get(
+        page: Int,
+        size: Int
+    ) -> AnyPublisher<PagingModel<NewsModel>, Error>
 }

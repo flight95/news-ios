@@ -6,10 +6,16 @@
 //
 
 import Combine
+import PagingLibrary
+import LibraryDomain_Model_Core
+import LibraryDomain_Model_News
 
 public protocol HomePresenter: ObservableObject {
     
-    var news: String { get }
+    var pageState: PageState<NewsModel> { get }
     
-    func fetchNews()
+    func initializePager()
+    func appendPager()
+    func retryPager()
+    func refreshPager()
 }

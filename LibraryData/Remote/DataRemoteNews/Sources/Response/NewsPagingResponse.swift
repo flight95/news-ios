@@ -6,7 +6,7 @@
 //
 
 class NewsPagingResponse: Decodable {
-    var totalResults: Int? = nil
+    var totalResults: Int64? = nil
     var articles: [NewsResponse]? = nil
     
     enum CodingKeys: String, CodingKey {

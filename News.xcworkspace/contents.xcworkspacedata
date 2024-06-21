@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
+   <FileRef
+      location = "group:PagingLibrary">
+   </FileRef>
    <Group
       location = "group:LibraryData"
       name = "LibraryData">
+      <FileRef
+         location = "group:DataNews">
+      </FileRef>
       <Group
          location = "group:Cache"
          name = "Cache">
@@ -18,9 +24,6 @@
             location = "group:DataRemoteNews">
          </FileRef>
       </Group>
-      <FileRef
-         location = "group:/Users/richard/Android/iOS/News/LibraryData/DataNews">
-      </FileRef>
    </Group>
    <Group
       location = "group:LibraryDomain"
@@ -28,6 +31,9 @@
       <Group
          location = "group:Model"
          name = "Model">
+         <FileRef
+            location = "group:DomainModelNews">
+         </FileRef>
          <FileRef
             location = "group:DomainModelCore">
          </FileRef>
@@ -46,6 +52,9 @@
    <Group
       location = "group:NewsView"
       name = "NewsView">
+      <FileRef
+         location = "group:ViewCore">
+      </FileRef>
       <FileRef
          location = "group:HomeView">
       </FileRef>

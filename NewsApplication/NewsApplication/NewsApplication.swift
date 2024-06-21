@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import NewsView_Core
 import NewsView_Home
 import NewsPresenter_Home
 
 @main
 struct NewsApplication: App {
+    
+    private let manager = KingfisherModule.provideManager()
     
     var body: some Scene {
         WindowGroup {
