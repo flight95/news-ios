@@ -23,7 +23,7 @@ extension NewsEntity {
                 description: newsDescription.trimOrNil(),
                 content: newsContent.trimOrNil(),
                 publishedAt: newsPublishedAt.aboveOrNil() ?? { throw RuntimeError.illegalState(message: "News published at could not be empty.") }(),
-                openedAt: nil
+                openedAt: newsOpenedAt.aboveOrNil()
             )
         } catch {
             return nil

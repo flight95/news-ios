@@ -17,17 +17,25 @@ public class HomePresenterImplements : HomePresenter {
     // MARK: - Instance functions.
     
     public static func getInstance(
-        getNews: GetNews
+        setNews: SetNews,
+        getNews: GetNews,
+        removeNews: RemoveNews
     ) -> HomePresenterImplements {
         return HomePresenterImplements(
-            getNews: getNews
+            setNews: setNews,
+            getNews: getNews,
+            removeNews: removeNews
         )
     }
     
     private init(
-        getNews: GetNews
+        setNews: SetNews,
+        getNews: GetNews,
+        removeNews: RemoveNews
     ) {
+        _setNews = setNews
         _getNews = getNews
+        _removeNews = removeNews
     }
     
     deinit { // This is canceled along with the lifecycle of the ObservableObject.
@@ -38,7 +46,9 @@ public class HomePresenterImplements : HomePresenter {
     // MARK: - Constants and Variables.
     
     private var _cancellables = Set<AnyCancellable>()
+    private var _setNews: SetNews
     private var _getNews: GetNews
+    private var _removeNews: RemoveNews
     private var _pager: Pager<NewsModel>? = nil
     
     // MARK: - Implements HomePresenter.
@@ -91,5 +101,41 @@ public class HomePresenterImplements : HomePresenter {
     
     public func refreshPager() {
         _pager?.refresh()
+        _removeNews()
+            .receive(on: DispatchQueue.main)
+            .sink(
+                receiveCompletion: { completion in
+                    switch completion {
+                        case .finished: break
+                        case .failure: break
+                    }
+                },
+                receiveValue: { value in }
+            )
+            .store(in: &self._cancellables)
+    }
+    
+    public func selectNews(news: NewsModel) {
+        do {
+            let select = try news.copy(openedAt: Date().timeIntervalSince1970)
+            _pager?.update(item: select)
+            _setNews(model: select)
+                .receive(on: DispatchQueue.main)
+                .sink(
+                    receiveCompletion: { completion in
+                        switch completion {
+                            case .finished: break
+                            case .failure:
+                                self._pager?.update(item: news)
+                        }
+                    },
+                    receiveValue: { value in
+                        if (value == nil) {
+                            self._pager?.update(item: news)
+                        }
+                    }
+                )
+                .store(in: &self._cancellables)
+        } catch { }
     }
 }

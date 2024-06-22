@@ -2,39 +2,31 @@
 
 //
 //  Package.swift
-//  NewsView-Home
+//  NewsView-News
 //
-//  Created by Richard on 2024.06.18
+//  Created by Richard on 2024.06.23
 //
 
 import PackageDescription
 
 let package = Package(
-    name: "NewsView-Home",
+    name: "NewsView-News",
     platforms: [.iOS(.v15)],
     products: [
-        .library(name: "NewsView-Home", targets: ["NewsView-Home"]),
+        .library(name: "NewsView-News", targets: ["NewsView-News"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/onevcat/Kingfisher.git", .upToNextMajor(from: "7.12.0")),
-        .package(name: "PagingLibrary", path: "PagingLibrary"),
         .package(name: "LibraryDomain-Model-Core", path: "../LibraryDomain/Model/DomainModelCore"),
         .package(name: "LibraryDomain-Model-News", path: "../LibraryDomain/Model/DomainModelNews"),
         .package(name: "NewsView-Core", path: "../NewsView/ViewCore"),
-        .package(name: "NewsView-News", path: "../NewsView/NewsView"),
-        .package(name: "NewsPresenter-Home", path: "../NewsPresenter/HomePresenter"),
     ],
     targets: [
         .target(
-            name: "NewsView-Home",
+            name: "NewsView-News",
             dependencies: [
-                .product(name: "Kingfisher", package: "Kingfisher"),
-                .product(name: "PagingLibrary", package: "PagingLibrary"),
                 .product(name: "LibraryDomain-Model-Core", package: "LibraryDomain-Model-Core"),
                 .product(name: "LibraryDomain-Model-News", package: "LibraryDomain-Model-News"),
                 .product(name: "NewsView-Core", package: "NewsView-Core"),
-                .product(name: "NewsView-News", package: "NewsView-News"),
-                .product(name: "NewsPresenter-Home", package: "NewsPresenter-Home"),
             ]
         ),
     ]

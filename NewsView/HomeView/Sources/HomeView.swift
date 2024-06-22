@@ -44,7 +44,8 @@ public struct HomeView<Presenter: HomePresenter>: View {
                         ForEach(Array(_pageState.items.enumerated()), id: \.element.id) { index, news in
                             HomeItemView(
                                 columns: columns,
-                                news: news
+                                news: news,
+                                onClick: { item in _presenter.selectNews(news: item) }
                             )
                             .onAppear {
                                 if (_pageState.items.count < index + 8) {

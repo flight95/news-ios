@@ -66,6 +66,9 @@
       location = "group:NewsView"
       name = "NewsView">
       <FileRef
+         location = "group:NewsView">
+      </FileRef>
+      <FileRef
          location = "group:ViewCore">
       </FileRef>
       <FileRef

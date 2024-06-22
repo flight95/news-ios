@@ -13,13 +13,14 @@ import LibraryData_Remote_News
 public struct HomePresenterModule {
     
     public static func provideHomePresenter() throws -> some HomePresenter {
+        let repository = NewsRepositoryModule.provideNewsRepository(
+            cache: try NewsCacheDataSourceModule.provideNewsCacheDataSource(),
+            remote: NewsRemoteDataSourceModule.provideNewsRemoteDataSource()
+        )
         return HomePresenterImplements.getInstance(
-            getNews: GetNewsModule.provideGetNews(
-                repository: NewsRepositoryModule.provideNewsRepository(
-                    cache: try NewsCacheDataSourceModule.provideNewsCacheDataSource(),
-                    remote: NewsRemoteDataSourceModule.provideNewsRemoteDataSource()
-                )
-            )
+            setNews: SetNewsModule.provideSetNews(repository: repository),
+            getNews: GetNewsModule.provideGetNews(repository: repository),
+            removeNews: RemoveNewsModule.provideRemoveNews(repository: repository)
         )
     }
 }

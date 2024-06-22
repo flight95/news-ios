@@ -48,4 +48,28 @@ public struct NewsModel: Identifiable {
         self.publishedAt = publishedAt
         self.openedAt = openedAt
     }
+    
+    public func copy(
+        source: String? = nil,
+        title: String? = nil,
+        target: URL? = nil,
+        image: URL? = nil,
+        author: String? = nil,
+        description: String? = nil,
+        content: String? = nil,
+        publishedAt: TimeInterval? = nil,
+        openedAt: TimeInterval? = nil
+    ) throws -> NewsModel {
+        return try NewsModel(
+            source: source ?? self.source,
+            title: title ?? self.title,
+            target: target ?? self.target,
+            image: image ?? self.image,
+            author: author ?? self.author,
+            description: description ?? self.description,
+            content: content ?? self.content,
+            publishedAt: publishedAt ?? self.publishedAt,
+            openedAt: openedAt ?? self.openedAt
+        )
+    }
 }

@@ -45,6 +45,10 @@ public class Pager<T: Identifiable> {
     
     // MARK: - Functions.
     
+    public func update(item: T) {
+        state?.update(item: item)
+    }
+    
     public func append() {
         guard let status = state else {
             return

@@ -18,4 +18,6 @@ public protocol HomePresenter: ObservableObject {
     func appendPager()
     func retryPager()
     func refreshPager()
+    
+    func selectNews(news: NewsModel)
 }

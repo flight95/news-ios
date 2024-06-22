@@ -11,6 +11,7 @@ import Kingfisher
 import LibraryDomain_Model_Core
 import LibraryDomain_Model_News
 import NewsView_Core
+import NewsView_News
 
 public struct HomeItemView : View {
     
@@ -18,11 +19,14 @@ public struct HomeItemView : View {
     
     public init(
         columns: Int,
-        news: NewsModel
+        news: NewsModel,
+        onClick: @escaping (NewsModel) -> Void
     ) {
         _size = (columns == 1) ? 124 : 93
         _padding = (columns == 1) ? 2 : 1
         _news = news
+        _opened = (news.openedAt ?? -1) > 0
+        _onClick = onClick
     }
     
     // MARK: - Constants and Variables.
@@ -30,12 +34,17 @@ public struct HomeItemView : View {
     private let _size: CGFloat
     private let _padding: CGFloat
     private let _news: NewsModel
+    private let _opened: Bool
+    private var _onClick: (NewsModel) -> Void
     
     // MARK: - Views.
     
     public var body: some View {
-        Button(
-            action: { }
+        NavigationLink(
+            destination: NewsView(
+                model: _news,
+                onAppear: { news in _onClick(news) }
+            )
         ) {
             HStack(alignment: .top) {
                 ImageView.load(
@@ -50,21 +59,21 @@ public struct HomeItemView : View {
                     Text(_news.source)
                         .lineLimit(1)
                         .font(.caption)
-                        .foregroundColor(.brown)
+                        .foregroundColor(.black)
                         .background(.white)
                         .padding(.top, _padding)
                     Text(_news.title)
                         .lineLimit(2)
                         .font(.callout)
                         .multilineTextAlignment(.leading)
-                        .foregroundColor(.black)
+                        .foregroundColor(_opened ? .brown : .black)
                         .background(.white)
                         .padding(.top, 1)
                     Spacer(minLength: 4)
                     Text(TimeFormatter.string(from: _news.publishedAt) ?? "")
                         .lineLimit(1)
                         .font(.caption2)
-                        .foregroundColor(.brown)
+                        .foregroundColor(.black)
                         .background(.white)
                         .padding(.bottom, 2)
                 }
