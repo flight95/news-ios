@@ -10,9 +10,11 @@ import LibraryDomain_News
 public struct NewsRepositoryModule {
     
     public static func provideNewsRepository(
+        cache: NewsCacheDataSource,
         remote: NewsRemoteDataSource
     ) -> some NewsRepository {
         return NewsRepositoryImplements.getInstance(
+            cache: cache,
             remote: remote
         )
     }

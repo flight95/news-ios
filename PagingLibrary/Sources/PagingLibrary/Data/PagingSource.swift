@@ -13,7 +13,7 @@ public class PagingSource<T: Identifiable> {
     // MARK: - Instance functions.
     
     public static func getInstance(
-        load: @escaping (LoadParams, @escaping (LoadResult) -> Void) -> Void
+        load: @escaping (LoadParams, @escaping (LoadResult) -> Void) throws -> Void
     ) -> PagingSource {
         return PagingSource(
             load: load
@@ -21,14 +21,14 @@ public class PagingSource<T: Identifiable> {
     }
     
     private init(
-        load: @escaping (LoadParams, @escaping (LoadResult) -> Void) -> Void
+        load: @escaping (LoadParams, @escaping (LoadResult) -> Void) throws -> Void
     ) {
         _load = load
     }
     
     // MARK: - Constants and Variables.
     
-    private var _load: (LoadParams, @escaping (LoadResult) -> Void) -> Void
+    private var _load: (LoadParams, @escaping (LoadResult) -> Void) throws -> Void
     
     // MARK: - Sub struct for load.
     
@@ -36,6 +36,7 @@ public class PagingSource<T: Identifiable> {
         case error(cause: PagingError)
         case invalid
         case page(items: [T], nextKey: Int?)
+        case finished
     }
     
     public struct LoadParams {
@@ -46,8 +47,7 @@ public class PagingSource<T: Identifiable> {
     func append(
         params: LoadParams,
         completion: @escaping (LoadResult) -> Void
-    ) {
-        _load(params, completion)
+    ) throws {
+        try _load(params, completion)
     }
 }
-

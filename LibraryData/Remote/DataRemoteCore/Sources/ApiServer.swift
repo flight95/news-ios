@@ -8,5 +8,5 @@
 import Foundation
 
 public enum ApiServer: String {
-    case release = "https:/newsapi.org"
+    case release = "http://newsapi.org"
 }

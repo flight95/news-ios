@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		790F05B32C234A8D00006A79 /* local.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 790F05B22C234A8D00006A79 /* local.xcconfig */; };
 		7926847A2C25BD8000240A34 /* AlamofireDynamic in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 795978152C22AD5E0025E573 /* AlamofireDynamic */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		7926847E2C25DC5C00240A34 /* LibraryData-Cache-Database in Frameworks */ = {isa = PBXBuildFile; productRef = 7926847D2C25DC5C00240A34 /* LibraryData-Cache-Database */; };
+		792D7D942C27048300DB09DC /* LibraryData-Cache-News in Frameworks */ = {isa = PBXBuildFile; productRef = 792D7D932C27048300DB09DC /* LibraryData-Cache-News */; };
 		795355C22C21C2D5005F0679 /* NewsApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795355C12C21C2D5005F0679 /* NewsApplication.swift */; };
 		795355C62C21C2D6005F0679 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 795355C52C21C2D6005F0679 /* Assets.xcassets */; };
 		795355C92C21C2D6005F0679 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 795355C82C21C2D6005F0679 /* Preview Assets.xcassets */; };
@@ -26,6 +27,9 @@
 		79A3C97A2C25579A0088177A /* LibraryData-News in Frameworks */ = {isa = PBXBuildFile; productRef = 79A3C9792C25579A0088177A /* LibraryData-News */; };
 		79B340D82C21E39200A599C9 /* NewsView-Home in Frameworks */ = {isa = PBXBuildFile; productRef = 79B340D72C21E39200A599C9 /* NewsView-Home */; };
 		79B340DB2C21E49500A599C9 /* NewsPresenter-Home in Frameworks */ = {isa = PBXBuildFile; productRef = 79B340DA2C21E49500A599C9 /* NewsPresenter-Home */; };
+		79CD24FB2C2688D900D48342 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 79CD24FA2C2688D900D48342 /* RealmSwift */; };
+		79CD24FC2C269C2B00D48342 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 79CD24FA2C2688D900D48342 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		79CD24FF2C26F8B400D48342 /* LibraryData-Cache-DatabaseNews in Frameworks */ = {isa = PBXBuildFile; productRef = 79CD24FE2C26F8B400D48342 /* LibraryData-Cache-DatabaseNews */; };
 		79E16F482C24C16500F3FCC5 /* PagingLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 79E16F472C24C16500F3FCC5 /* PagingLibrary */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +40,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				79CD24FC2C269C2B00D48342 /* RealmSwift in Embed Frameworks */,
 				7926847A2C25BD8000240A34 /* AlamofireDynamic in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -60,15 +65,19 @@
 				79A3C9782C2556380088177A /* Kingfisher in Frameworks */,
 				79A3C9752C2552D90088177A /* LibraryDomain-Model-Core in Frameworks */,
 				79B340D82C21E39200A599C9 /* NewsView-Home in Frameworks */,
+				79CD24FF2C26F8B400D48342 /* LibraryData-Cache-DatabaseNews in Frameworks */,
 				795978132C22A3CB0025E573 /* LibraryData-Remote-News in Frameworks */,
 				79A3C97A2C25579A0088177A /* LibraryData-News in Frameworks */,
 				799911732C255EFB00C1924B /* LibraryData-News in Frameworks */,
 				795978162C22AD5E0025E573 /* AlamofireDynamic in Frameworks */,
 				79E16F482C24C16500F3FCC5 /* PagingLibrary in Frameworks */,
 				79611E972C2498ED0005A355 /* NewsView-Core in Frameworks */,
+				79CD24FB2C2688D900D48342 /* RealmSwift in Frameworks */,
 				795978192C22ADE40025E573 /* LibraryData-Remote-Core in Frameworks */,
 				799911702C255E8400C1924B /* LibraryData-News in Frameworks */,
 				79B340DB2C21E49500A599C9 /* NewsPresenter-Home in Frameworks */,
+				792D7D942C27048300DB09DC /* LibraryData-Cache-News in Frameworks */,
+				7926847E2C25DC5C00240A34 /* LibraryData-Cache-Database in Frameworks */,
 				798F70082C245AED00FCD9AA /* LibraryDomain-Model-News in Frameworks */,
 				795978102C2299E70025E573 /* LibraryData-News in Frameworks */,
 				79611E9A2C249CC80005A355 /* PagingLibrary in Frameworks */,
@@ -155,6 +164,10 @@
 				79A3C9792C25579A0088177A /* LibraryData-News */,
 				7999116F2C255E8400C1924B /* LibraryData-News */,
 				799911722C255EFB00C1924B /* LibraryData-News */,
+				7926847D2C25DC5C00240A34 /* LibraryData-Cache-Database */,
+				79CD24FA2C2688D900D48342 /* RealmSwift */,
+				79CD24FE2C26F8B400D48342 /* LibraryData-Cache-DatabaseNews */,
+				792D7D932C27048300DB09DC /* LibraryData-Cache-News */,
 			);
 			productName = NewsApplication;
 			productReference = 795355BE2C21C2D5005F0679 /* NewsApplication.app */;
@@ -168,7 +181,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1520;
-				LastUpgradeCheck = 1520;
+				LastUpgradeCheck = 1540;
 				TargetAttributes = {
 					795355BD2C21C2D5005F0679 = {
 						CreatedOnToolsVersion = 15.2;
@@ -197,6 +210,10 @@
 				79E16F462C24C16500F3FCC5 /* XCLocalSwiftPackageReference "../PagingLibrary" */,
 				79A3C9762C2556380088177A /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				799911712C255EFB00C1924B /* XCLocalSwiftPackageReference "../LibraryData/DataNews" */,
+				7926847C2C25DC5C00240A34 /* XCLocalSwiftPackageReference "../LibraryData/Cache/Database/DataCacheDatabase" */,
+				79CD24F92C2688D900D48342 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				79CD24FD2C26F8B400D48342 /* XCLocalSwiftPackageReference "../LibraryData/Cache/Database/DataCacheDatabaseNews" */,
+				792D7D922C27048300DB09DC /* XCLocalSwiftPackageReference "../LibraryData/Cache/DataCacheNews" */,
 			);
 			productRefGroup = 795355BF2C21C2D5005F0679 /* Products */;
 			projectDirPath = "";
@@ -212,7 +229,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				790F05B32C234A8D00006A79 /* local.xcconfig in Resources */,
 				795355C92C21C2D6005F0679 /* Preview Assets.xcassets in Resources */,
 				795355C62C21C2D6005F0679 /* Assets.xcassets in Resources */,
 			);
@@ -455,6 +471,14 @@
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../LibraryDomain/Model/DomainModelCore;
 		};
+		7926847C2C25DC5C00240A34 /* XCLocalSwiftPackageReference "../LibraryData/Cache/Database/DataCacheDatabase" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../LibraryData/Cache/Database/DataCacheDatabase;
+		};
+		792D7D922C27048300DB09DC /* XCLocalSwiftPackageReference "../LibraryData/Cache/DataCacheNews" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../LibraryData/Cache/DataCacheNews;
+		};
 		795978112C22A3CB0025E573 /* XCLocalSwiftPackageReference "../LibraryData/Remote/DataRemoteNews" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../LibraryData/Remote/DataRemoteNews;
@@ -482,6 +506,10 @@
 		79B340D92C21E49500A599C9 /* XCLocalSwiftPackageReference "../NewsPresenter/HomePresenter" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../NewsPresenter/HomePresenter;
+		};
+		79CD24FD2C26F8B400D48342 /* XCLocalSwiftPackageReference "../LibraryData/Cache/Database/DataCacheDatabaseNews" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../LibraryData/Cache/Database/DataCacheDatabaseNews;
 		};
 		79E16F462C24C16500F3FCC5 /* XCLocalSwiftPackageReference "../PagingLibrary" */ = {
 			isa = XCLocalSwiftPackageReference;
@@ -514,9 +542,25 @@
 				minimumVersion = 7.12.0;
 			};
 		};
+		79CD24F92C2688D900D48342 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.52.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		7926847D2C25DC5C00240A34 /* LibraryData-Cache-Database */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "LibraryData-Cache-Database";
+		};
+		792D7D932C27048300DB09DC /* LibraryData-Cache-News */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "LibraryData-Cache-News";
+		};
 		7959780F2C2299E70025E573 /* LibraryData-News */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = "LibraryData-News";
@@ -574,6 +618,15 @@
 		79B340DA2C21E49500A599C9 /* NewsPresenter-Home */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = "NewsPresenter-Home";
+		};
+		79CD24FA2C2688D900D48342 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 79CD24F92C2688D900D48342 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+		79CD24FE2C26F8B400D48342 /* LibraryData-Cache-DatabaseNews */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "LibraryData-Cache-DatabaseNews";
 		};
 		79E16F472C24C16500F3FCC5 /* PagingLibrary */ = {
 			isa = XCSwiftPackageProductDependency;

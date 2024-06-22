@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import Kingfisher
+import LibraryDomain_Model_Core
 
 public class ImageView {
     
@@ -16,7 +17,7 @@ public class ImageView {
         width: CGFloat,
         height: CGFloat
     ) -> some View {
-        return KFImage(source)
+        return KFImage(source?.fixHTTP())
             .setProcessor(
                 ResizingImageProcessor(
                     referenceSize: CGSize(width: width, height: width),

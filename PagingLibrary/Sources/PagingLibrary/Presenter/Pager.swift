@@ -93,24 +93,36 @@ public class Pager<T: Identifiable> {
             status.key = _config.initialKey
         }
         
-        _pagingSource?.append(
-            params: PagingSource<T>.LoadParams(key: status.key, loadSize: _config.pageSize)
-        ) { result in
-            print("append: \(result)")
-            switch (result) {
-            case .error(let cause):
-                status.error = cause
-            case .invalid:
-                status.key = nil
-                status.error = nil
-                status.finished = true
-                self._pagingSource = nil
-            case let .page(items, nextKey):
-                status.key = nextKey
-                status.finished = nextKey == nil
-                status.error = nil
-                status.append(items: items)
+        if let paging = _pagingSource {
+            do {
+                try paging.append(
+                    params: PagingSource<T>.LoadParams(key: status.key, loadSize: _config.pageSize)
+                ) { result in
+                    switch (result) {
+                        case .error(let cause):
+                            status.error = cause
+                        case .invalid:
+                            status.key = nil
+                            status.error = nil
+                            status.finished = true
+                            self._pagingSource = nil
+                        case let .page(items, nextKey):
+                            status.key = nextKey
+                            status.finished = nextKey == nil
+                            status.error = nil
+                            status.append(items: items)
+                        case .finished:
+                            if (status.paging) {
+                                status.error = PagingError.append()
+                            }
+                    }
+                    status.paging = false
+                }
+            } catch {
+                status.error = PagingError.append(cause: error)
+                status.paging = false
             }
+        } else {
             status.paging = false
         }
     }

@@ -59,9 +59,10 @@ public class HomePresenterImplements : HomePresenter {
                         .sink(
                             receiveCompletion: { completion in
                                 switch completion {
-                                    case .finished: break
+                                    case .finished:
+                                        result(PagingSource.LoadResult.finished)
                                     case .failure(let error):
-                                        result(PagingSource.LoadResult.error(cause: PagingError.appendError(cause: error)))
+                                        result(PagingSource.LoadResult.error(cause: PagingError.append(cause: error)))
                                 }
                             },
                             receiveValue: { value in

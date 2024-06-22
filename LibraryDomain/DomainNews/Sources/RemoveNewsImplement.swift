@@ -1,8 +1,8 @@
 //
-//  GetNewsImplements.swift
+//  RemoveNewsImplements.swift
 //  LibraryDomain-News
 //
-//  Created by Richard on 2024.06.19
+//  Created by Richard on 2024.06.23
 //
 
 import Foundation
@@ -10,14 +10,14 @@ import Combine
 import LibraryDomain_Model_Core
 import LibraryDomain_Model_News
 
-public class GetNewsImplements : GetNews {
+public class RemoveNewsImplements : RemoveNews {
     
     // MARK: - Instance functions.
     
     public static func getInstance(
         repository: NewsRepository
-    ) -> GetNewsImplements {
-        return GetNewsImplements(
+    ) -> RemoveNewsImplements {
+        return RemoveNewsImplements(
             repository: repository
         )
     }
@@ -32,13 +32,10 @@ public class GetNewsImplements : GetNews {
     
     private let _repository: NewsRepository
     
-    // MARK: - Implements GetNews.
+    // MARK: - Implements RemoveNews.
     
-    public func callAsFunction(
-        page: Int,
-        size: Int
-    ) -> AnyPublisher<PagingModel<NewsModel>, Error> {
-        return _repository.get(page: page, size: size)
+    public func callAsFunction() -> AnyPublisher<Bool, Error> {
+        return _repository.remove()
             .receive(on: DispatchQueue.global(qos: .default))
             .eraseToAnyPublisher()
     }

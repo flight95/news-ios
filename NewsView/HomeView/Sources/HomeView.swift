@@ -47,21 +47,24 @@ public struct HomeView<Presenter: HomePresenter>: View {
                                 news: news
                             )
                             .onAppear {
-                                if (_pageState.items.count < index + 4) {
+                                if (_pageState.items.count < index + 8) {
                                     _presenter.appendPager()
                                 }
                             }
                         }
-                        if (_pageState.paging) { HomeItemProgressView().padding() }
+                        if (_pageState.paging) {
+                            HomeItemProgressView().padding()
+                        }
                         else if (_pageState.error != nil) { HomeItemErrorView(onRetry: { _presenter.retryPager() }).padding() }
                         else { }
                     }
                     .padding()
                 }
-                .navigationTitle("Home")
-                .onAppear { _presenter.initializePager() }
-                .refreshable { _presenter.refreshPager() }
             }
+            .navigationTitle("Home")
+            .onAppear { _presenter.initializePager() }
+            .refreshable { _presenter.refreshPager() }
         }
+        .navigationViewStyle(.stack)
     }
 }

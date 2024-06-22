@@ -27,17 +27,17 @@ public struct HomeItemErrorView : View {
     
     public var body: some View {
         VStack {
-            Button(action: {
-                _onRetry()
-            }, label: {
-                Text("Retry".uppercased())
-                    .foregroundColor(.white)
-                    .background(.black)
-                    .cornerRadius(8)
-                    .padding(16)
-            })
+            Button(
+                action: { _onRetry() },
+                label: {
+                    Text("Retry".uppercased())
+                        .foregroundColor(.white)
+                        .padding(16)
+                }
+            )
+            .background(.black)
+            .cornerRadius(8)
         }
-        .background(.white)
         .frame(minHeight: 64)
     }
 }

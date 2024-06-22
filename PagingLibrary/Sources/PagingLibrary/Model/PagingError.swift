@@ -8,5 +8,5 @@
 import Foundation
 
 public enum PagingError: Error {
-    case appendError(cause: Error)
+    case append(cause: Error? = nil)
 }

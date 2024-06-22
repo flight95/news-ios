@@ -21,6 +21,7 @@ let package = Package(
         .package(name: "LibraryDomain-Model-News", path: "../LibraryDomain/Model/DomainModelNews"),
         .package(name: "LibraryDomain-News", path: "../LibraryDomain/DomainNews"),
         .package(name: "LibraryData-News", path: "../LibraryData/DataNews"),
+        .package(name: "LibraryData-Cache-News", path: "../LibraryData/Cache/DataCacheNews"),
         .package(name: "LibraryData-Remote-News", path: "../LibraryData/Remote/DataRemoteNews"),
     ],
     targets: [
@@ -32,6 +33,7 @@ let package = Package(
                 .product(name: "LibraryDomain-Model-News", package: "LibraryDomain-Model-News"),
                 .product(name: "LibraryDomain-News", package: "LibraryDomain-News"),
                 .product(name: "LibraryData-News", package: "LibraryData-News"),
+                .product(name: "LibraryData-Cache-News", package: "LibraryData-Cache-News"),
                 .product(name: "LibraryData-Remote-News", package: "LibraryData-Remote-News"),
             ]
         ),

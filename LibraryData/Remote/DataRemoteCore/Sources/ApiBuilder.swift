@@ -40,9 +40,14 @@ public class ApiBuilder {
     
     // MARK: - Log request interceptor.
     
+    private let _logRequestInterceptor = LogRequestInterceptor()
     struct LogRequestInterceptor: RequestInterceptor {
         
-        public func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
+        func adapt(
+            _ urlRequest: URLRequest,
+            for session: Session,
+            completion: @escaping (Result<URLRequest, Error>
+            ) -> Void) {
 #if DEBUG
             let method = urlRequest.method?.rawValue ?? "UNKNOWN"
             let uri = urlRequest.url?.absoluteString ?? ""
@@ -52,23 +57,39 @@ public class ApiBuilder {
         }
     }
     
+    // MARK: - Log response interceptor.
+    
+    private func logResponseValidator(request: URLRequest?, response: HTTPURLResponse, data: Data?) {
+#if DEBUG
+        let method = request?.method?.rawValue ?? "UNKNOWN"
+        let uri = request?.url?.absoluteString ?? ""
+        let status = response.statusCode
+        let description = HTTPURLResponse.localizedString(forStatusCode: status).uppercased()
+        print("RESPONSE [\(status): \(description)] \(method) \(uri)")
+#endif
+    }
+    
     // MARK: - Build.
     public func request<T: Decodable>(
         method: HTTPMethod,
         uri: String,
         parameters: Parameters? = nil
     ) -> AnyPublisher<T, some Error> {
-        return AF.request(
-            "\(_server.rawValue)\(uri)",
+        let session = Session.default
+        session.sessionConfiguration.timeoutIntervalForRequest = 8
+        return session.request(
+            "\(_server.rawValue)\(uri)".fixHTTP(),
             method: method,
             parameters: parameters,
             encoding: URLEncoding.default,
             headers: _headers,
-            interceptor: LogRequestInterceptor()
-        ).validate(statusCode: 200 ..< 300)
+            interceptor: _logRequestInterceptor
+        ).validate({ request, response, data in
+            self.logResponseValidator(request: request, response: response, data: data)
+            return .success(())
+        }).validate(statusCode: 200 ..< 300)
             .validate(contentType: self._contentType)
             .publishDecodable(queue: DispatchQueue.global(qos: .background))
             .value()
-        // TODO: Convert Error from Alamofire.AFError.ResponseValidationFailureReason.unacceptableStatusCode(code: 401))
     }
 }

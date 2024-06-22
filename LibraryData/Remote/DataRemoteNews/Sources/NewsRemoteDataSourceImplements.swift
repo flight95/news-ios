@@ -47,7 +47,7 @@ public class NewsRemoteDataSourceImplements : NewsRemoteDataSource {
     
     private let _api: NewsRemoteApi
     
-    // MARK: - Implements GetNews.
+    // MARK: - Implements NewsRemoteDataSource.
     
     public func get(
         page: Int,
@@ -70,7 +70,6 @@ public class NewsRemoteDataSourceImplements : NewsRemoteDataSource {
                     },
                     receiveValue: { response in
                         if let total = response.totalResults?.aboveOrNil() {
-                            print("get: \(page)")
                             promise(.success(
                                 PagingModel(
                                     total: total,

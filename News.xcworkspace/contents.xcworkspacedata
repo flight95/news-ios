@@ -13,6 +13,19 @@
       <Group
          location = "group:Cache"
          name = "Cache">
+         <FileRef
+            location = "group:DataCacheNews">
+         </FileRef>
+         <Group
+            location = "group:Database"
+            name = "Database">
+            <FileRef
+               location = "group:DataCacheDatabaseNews">
+            </FileRef>
+            <FileRef
+               location = "group:DataCacheDatabase">
+            </FileRef>
+         </Group>
       </Group>
       <Group
          location = "group:Remote"
