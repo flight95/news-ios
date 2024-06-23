@@ -36,14 +36,18 @@ public class PageState<T: Identifiable>: ObservableObject {
     
     @Published public private(set) var items: [T] = []
     
-    func append(items: [T]) {
-        self.items.append(contentsOf: items)
-    }
-    
     func update(item: T) {
         if let index = items.firstIndex(where: { source in source.id == item.id } ) {
             items.remove(at: index)
             items.insert(item, at: index)
         }
+    }
+    
+    func append(items: [T]) {
+        self.items.append(contentsOf: items)
+    }
+    
+    func refresh() {
+        items.removeAll()
     }
 }

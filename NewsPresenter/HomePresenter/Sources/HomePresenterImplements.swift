@@ -100,17 +100,16 @@ public class HomePresenterImplements : HomePresenter {
     }
     
     public func refreshPager() {
-        _pager?.refresh()
         _removeNews()
             .receive(on: DispatchQueue.main)
             .sink(
                 receiveCompletion: { completion in
                     switch completion {
                         case .finished: break
-                        case .failure: break
+                        case .failure(let error): self._pager?.refresh()
                     }
                 },
-                receiveValue: { value in }
+                receiveValue: { value in self._pager?.refresh() }
             )
             .store(in: &self._cancellables)
     }

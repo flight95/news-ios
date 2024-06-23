@@ -80,6 +80,7 @@ public class Pager<T: Identifiable> {
         }
         status.key = _config.initialKey
         status.error = nil
+        status.refresh()
         _pagingSource = nil
         load()
     }
